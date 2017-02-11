@@ -1,0 +1,19 @@
+%p#notice= notice
+%p
+  %strong Email:
+  = @email.email
+%p
+  %strong Status:
+  = @email.status
+%p
+  %strong Source:
+  = @email.source
+%p
+  %strong Description:
+  = @email.description
+%p
+  %strong Unsubscribed:
+  = @email.unsubscribed
+= link_to 'Edit', edit_email_path(@email)
+|
+= link_to 'Back', emails_path

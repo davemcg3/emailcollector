@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-xs-12.col-sm-6.col-sm-offset-3
+      %h1.strong We're sad to see you go!
+      %h2 You can resubscribe at any time...
+      = form_tag do
+        = hidden_field_tag :status, :value => '0'
+        = hidden_field_tag :unsubscribed, :value => DateTime.current
+        .field.form-group
+          = label :email, 'Enter your email to unsubscribe.'
+          %br/
+          = email_field :email, :email, :autofocus => true, :class => 'form-control'
+        .actions
+          = submit_tag 'unsubscribe', :class => 'btn btn-warning pull-right'

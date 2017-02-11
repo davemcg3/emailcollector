@@ -1,0 +1,69 @@
+// Place all the styles related to the emails controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+#content {
+	height: 100%;
+}
+.flexbox-container {
+	padding-top: 50px;
+    font-size: 1.2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height:100%;
+    background-color: deepskyblue;
+    color: white;
+
+    #flash-display {
+    	position: absolute;
+    	top: 50px;
+    	left: auto;
+    	right: auto;
+    }
+
+	.field {
+		input {
+			color: darkgray;
+		}
+	}
+}
+
+
+.navbar {
+	margin-bottom: 0;
+
+	.navbar-header {
+		> a, a:visited {
+			// styles aren't being imported in the correct order
+			color: #337ab7;
+		}
+	}
+
+	.navbar-text {
+		color: #777;
+
+		> a, a:visited {
+			// styles aren't being imported in the correct order
+			display: inline !important;
+			padding: 0 !important;
+			color: #337ab7;
+		}
+	}
+}
+
+.alert{
+  margin-bottom: 0
+}
+
+
+// Firefox and fieldsets re: tables
+// Firefox has some awkward fieldset styling involving width that interferes with the responsive table. This cannot be overridden without a Firefox-specific hack that we don't provide in Bootstrap:
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}

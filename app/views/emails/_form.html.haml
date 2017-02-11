@@ -1,0 +1,32 @@
+= form_for @email, :html => {:class => ''} do |f|
+  - if @email.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@email.errors.count, "error")
+        prohibited this email from being saved:
+      %ul
+        - @email.errors.full_messages.each do |message|
+          %li= message
+  .field.form-group
+    = f.label :email, :class => "control-label"
+    %br/
+    = f.text_field :email, :class => "form-control"
+  .field.checkbox
+    %label.checkbox{ :for => "status" }
+      = f.check_box :status, :class => "checkbox"
+      (Checked = Active)
+  .field.form-group
+    = f.label :source
+    %br/
+    = f.text_field :source, :class => "form-control"
+  .field.form-group
+    = f.label :description
+    %br/
+    = f.text_field :description, :class => "form-control"
+  .field.form-group
+    = f.label :unsubscribed
+    %br/
+    =# f.datetime_select :unsubscribed, :class => "form-control"
+    = @email.unsubscribed
+  .actions
+    = f.submit 'Update', :class => "btn btn-primary"

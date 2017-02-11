@@ -1,0 +1,20 @@
+.container
+  .row
+    .col-xs-12.col-sm-6.col-sm-offset-3
+      %h1.strong Launching soon!
+      %h2 Something exciting is coming...
+      = form_for(@email) do |f|
+        - if @email.errors.any?
+          #error_explanation
+            %h2
+              = pluralize(@email.errors.count, "error")
+              prohibited this email from being saved:
+            %ul
+              - @email.errors.full_messages.each do |message|
+                %li= message
+        .field.form-group
+          = f.label :email, 'Enter your email to be the first to know.'
+          %br/
+          = f.email_field :email, :autofocus => true, :class => 'form-control'
+        .actions
+          = f.submit 'submit', :class => 'btn btn-warning pull-right'

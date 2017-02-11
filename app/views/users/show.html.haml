@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-xs-12
+      %h1 User
+      %p
+        %b Name:
+        = @user.name
+      %p
+        %b Email:
+        = @user.email
+      %p
+        %b Password digest:
+        ********
+      %p
+        %b Admin:
+        = @user.admin
+

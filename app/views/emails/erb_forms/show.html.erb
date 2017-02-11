@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @email.email %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @email.status %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @email.source %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @email.description %>
+</p>
+
+<p>
+  <strong>Unsubscribed:</strong>
+  <%= @email.unsubscribed %>
+</p>
+
+<%= link_to 'Edit', edit_email_path(@email) %> |
+<%= link_to 'Back', emails_path %>

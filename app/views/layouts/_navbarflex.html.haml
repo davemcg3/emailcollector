@@ -1,0 +1,37 @@
+%nav.navbar.navbar-fixed-top.navbar-default
+  .container
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#navbarmenu", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} #{request.env["REMOTE_HOST"]}
+
+    #navbarmenu.navbar-collapse.collapse
+      - if current_user
+        %ul.nav.navbar-nav.navbar-right
+          %li.navbar-text #{current_user.name} | #{ link_to "Logout", '/logout' }
+      
+      - if current_user.try :admin?
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              Admin
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                = link_to 'All Emails', emails_path
+              %li
+                = link_to 'New Email', new_email_path
+              %li
+                = link_to 'All users', users_path
+              %li
+                = link_to 'New User', new_user_path
+
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          =link_to("Unsubscribe", "/emails/unsubscribe")
+
+= render 'layouts/flash'
