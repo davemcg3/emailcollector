@@ -30,9 +30,11 @@
 
     respond_to do |format|
       if @user.save
+        logger.info("Created user #{@user.inspect}")
         format.html { render :show, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
+        logger.info("Failed to create user #{@user.inspect}")
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -44,6 +46,7 @@
   def update
     respond_to do |format|
       if @user.update(user_params)
+        logger.info("Updated user #{user.inspect}")
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -56,6 +59,7 @@
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    logger.info("Destroying user #{user.inspect}")
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }

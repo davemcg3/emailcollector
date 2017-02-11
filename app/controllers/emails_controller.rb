@@ -37,15 +37,18 @@ class EmailsController < ApplicationController
     @email = Email.new(email_params)
     respond_to do |format|
       if @email.save
+        logger.info "Added email #{@email.inspect}"
         format.html { render :show, notice: 'Email was successfully created.' }
         format.json { render :show, status: :created, location: @email }
       else
         set_email_by_email
         if @email.update(email_params)
+          logger.info "Couldn't create email so updated existing email #{@email.inspect}"
           format.html { render :show, notice: 'Email was successfully created.' }
           format.json { render :show, status: :created, location: @email }
         else
-          format.html { render :new }
+          logger.info("Couldn't create or update email #{@email.inspect}")
+          format.html { render :new, notice: 'Unable to add email.' }
           format.json { render json: @email.errors, status: :unprocessable_entity }
         end
       end
@@ -57,6 +60,7 @@ class EmailsController < ApplicationController
   def update
     respond_to do |format|
       if @email.update(email_params)
+        logger.info("Updated email #{@email.inspect}")
         format.html { redirect_to emails_path, notice: 'Email was successfully updated.' }
         format.json { render :show, status: :ok, location: @email }
       else
@@ -69,6 +73,7 @@ class EmailsController < ApplicationController
   # DELETE /emails/1
   # DELETE /emails/1.json
   def destroy
+    logger.info("Deleting email #{@email.inspect}")
     @email.destroy
     respond_to do |format|
       format.html { redirect_to emails_url, notice: 'Email was successfully destroyed.' }
@@ -85,6 +90,7 @@ class EmailsController < ApplicationController
     @email[:unsubscribed] =  DateTime.current
     respond_to do |format|
       if @email.update(email_params)
+        logger.info("Unsubscribing email #{@email.inspect}")
         format.html { redirect_to root_path, notice: 'You have been successfully unsubscribed.' }
         format.json { render :show, status: :ok, location: @email }
       #else
@@ -110,10 +116,6 @@ class EmailsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def email_params
       params.require(:email).permit(:email, :status, :source, :description, :unsubscribed)
-    end
-
-    def auth_params
-      params.require(:email).permit(:email,:password)
     end
 
 end
