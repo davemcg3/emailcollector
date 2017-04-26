@@ -1,3 +1,4 @@
 class Email < ActiveRecord::Base
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true
+  validates_uniqueness_of :email, scope: [:source]
 end
