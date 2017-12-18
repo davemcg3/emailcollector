@@ -22,5 +22,8 @@ module Emailcollector
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # For serving assets in production, this should probably go in environments/production.rb but was recommended to put here on SO
+    config.serve_static_files = true
   end
 end
