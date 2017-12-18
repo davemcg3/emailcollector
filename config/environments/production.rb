@@ -76,4 +76,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # secrets.yml is in .gitignore so app on heroku doesn't know where to find the key
+  config.secret_key_base = ENV["SECRET_KEY_BASE"]
+
 end
