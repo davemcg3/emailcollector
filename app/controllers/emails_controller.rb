@@ -32,7 +32,7 @@ class EmailsController < ApplicationController
     params[:email][:status] = 1
     params[:email][:unsubscribed] = nil
     params[:email][:source] = request.host
-    @debug = email_params 
+    @debug = email_params
 
     @email = Email.new(email_params)
     respond_to do |format|
@@ -44,7 +44,7 @@ class EmailsController < ApplicationController
         set_email_by_email
         if @email.update(email_params)
           logger.info "Couldn't create email so updated existing email #{@email.inspect}"
-          format.html { render :show, notice: 'Email was successfully created.' }
+          format.html { render :show, notice: 'Email was successfully updated.' }
           format.json { render :show, status: :created, location: @email }
         else
           logger.info("Couldn't create or update email #{@email.inspect}")
