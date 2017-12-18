@@ -12,6 +12,11 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Use puma in production
+gem 'puma'
+# Use rack-timeout to kill long-running processes, heroku timeouts in 30s but can't tell puma it happened
+gem 'rack-timeout'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -59,3 +64,5 @@ gem "haml-rails"
 
 # Pretty print
 gem "awesome_print"
+
+ruby '2.3.4'
