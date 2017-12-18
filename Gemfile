@@ -50,6 +50,8 @@ end
 group :production do
   # Use postgresql as the database for Active Record
   gem 'pg'
+  # Enable all platform functionality in heroku, like logging
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
