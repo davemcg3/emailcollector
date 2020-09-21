@@ -9,7 +9,7 @@ module ApplicationHelper
     when 'signup.patriotplatform.com'
       "patriotic_american"
     when 'localhost'
-      "patriotic_american"
+      "illiotide"
     end
   end
 
@@ -17,8 +17,8 @@ module ApplicationHelper
     case request.host
     when 'signup.patriotplatform.com'
       'flag_red'
-    when 'localhost'
-      'flag_red'
+    # when 'localhost'
+    #   'flag_red'
     else
       "btn-warning"
     end

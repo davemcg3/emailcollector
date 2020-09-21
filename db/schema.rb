@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20170426054912) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "emails", force: :cascade do |t|
     t.string   "email"
     t.boolean  "status"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170426054912) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "emails", ["email", "source"], name: "index_emails_on_email_and_source", unique: true
+  add_index "emails", ["email", "source"], name: "index_emails_on_email_and_source", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -34,6 +37,6 @@ ActiveRecord::Schema.define(version: 20170426054912) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end
