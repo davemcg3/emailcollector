@@ -1,5 +1,5 @@
 # emailcollector
-Just a quick and dirty email collector built on rails 4
+Just a quick and dirty email collector running on rails 6
 
 ## Important routes
 `/users/new`  register a new user
