@@ -1,3 +1,50 @@
+GIT
+  remote: https://github.com/rspec/rspec-core.git
+  revision: e7c5d030966a7e8dad3e0a67c61920c4f2437c15
+  branch: master
+  specs:
+    rspec-core (3.10.0.pre)
+      rspec-support (= 3.10.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-expectations.git
+  revision: e63ff4765e1cd2798b02ddddad259f1104ef87a5
+  branch: master
+  specs:
+    rspec-expectations (3.10.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.10.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-mocks.git
+  revision: 0a52e0a86b126b4bab94d277b2ad99a7492dc37d
+  branch: master
+  specs:
+    rspec-mocks (3.10.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.10.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-rails.git
+  revision: 01704c50c146f720db914724c25681781ecefb23
+  branch: master
+  specs:
+    rspec-rails (4.1.0.pre)
+      actionpack (>= 4.2)
+      activesupport (>= 4.2)
+      railties (>= 4.2)
+      rspec-core (= 3.10.0.pre)
+      rspec-expectations (= 3.10.0.pre)
+      rspec-mocks (= 3.10.0.pre)
+      rspec-support (= 3.10.0.pre)
+
+GIT
+  remote: https://github.com/rspec/rspec-support.git
+  revision: 6447b0c2c9d1cd3e1504784fb85675ca9ae7b7c3
+  branch: master
+  specs:
+    rspec-support (3.10.0.pre)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,6 +103,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.0.0.2)
       execjs
     awesome_print (1.8.0)
@@ -66,15 +115,18 @@ GEM
       sassc (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.3)
-    coffee-rails (5.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 5.2.0)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
+    capybara (3.33.0)
+      addressable
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.8)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      regexp_parser (~> 1.5)
+      xpath (~> 3.2)
+    childprocess (3.0.0)
     concurrent-ruby (1.1.7)
     crass (1.0.6)
+    diff-lcs (1.4.4)
     erubi (1.9.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -122,6 +174,7 @@ GEM
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     pg (1.2.3)
+    public_suffix (4.0.6)
     puma (5.0.0)
       nio4r (~> 2.0)
     rack (2.2.3)
@@ -148,11 +201,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.5)
     railties (6.0.3.3)
       actionpack (= 6.0.3.3)
       activesupport (= 6.0.3.3)
@@ -161,12 +209,17 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
     rdoc (6.2.1)
+    regexp_parser (1.8.0)
     ruby_parser (3.15.0)
       sexp_processor (~> 4.9)
+    rubyzip (2.3.0)
     sassc (2.4.0)
       ffi (~> 1.9)
     sdoc (1.1.0)
       rdoc (>= 5.0)
+    selenium-webdriver (3.142.7)
+      childprocess (>= 0.5, < 4.0)
+      rubyzip (>= 1.2.2)
     sexp_processor (4.15.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -175,14 +228,10 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
@@ -192,9 +241,15 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webdrivers (4.4.1)
+      nokogiri (~> 1.6)
+      rubyzip (>= 1.3.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xpath (3.2.0)
+      nokogiri (~> 1.8)
     zeitwerk (2.4.0)
 
 PLATFORMS
@@ -206,7 +261,7 @@ DEPENDENCIES
   bcrypt
   bootstrap-sass
   byebug
-  coffee-rails
+  capybara
   haml-rails
   jbuilder
   jquery-rails
@@ -215,13 +270,15 @@ DEPENDENCIES
   puma
   rack-timeout
   rails (= 6.0.3.3)
-  rails_12factor
+  rspec-core!
+  rspec-expectations!
+  rspec-mocks!
+  rspec-rails!
+  rspec-support!
   sdoc
-  sqlite3
-  turbolinks
-  tzinfo-data
   uglifier
   web-console
+  webdrivers
 
 RUBY VERSION
    ruby 2.6.5p114

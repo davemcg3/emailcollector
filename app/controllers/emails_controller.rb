@@ -14,6 +14,7 @@ class EmailsController < ApplicationController
   # GET /emails/1
   # GET /emails/1.json
   def show
+    redirect_to root_path
   end
 
   # GET /emails/new
@@ -86,16 +87,20 @@ class EmailsController < ApplicationController
 
   def unsubscribed
     @email = Email.find_by email: email_params[:email]
-    @email[:status] = 0
-    @email[:unsubscribed] =  DateTime.current
+    Rails.logger.debug @email
+    Rails.logger.debug @email.present?
+    if @email.present?
+      @email[:status] = 0
+      @email[:unsubscribed] =  DateTime.current
+    end
     respond_to do |format|
-      if @email.update(email_params)
+      if @email.present? && @email.update(email_params)
         logger.info("Unsubscribing email #{@email.inspect}")
         format.html { redirect_to root_path, notice: 'You have been successfully unsubscribed.' }
         format.json { render :show, status: :ok, location: @email }
-      #else
-      #  format.html { render :edit }
-      #  format.json { render json @email.errors, status: unprocessable_entity }
+      else
+        format.html { redirect_to root_path, notice: 'No email subscribed.' }
+        format.json { render json @email.errors, status: unprocessable_entity }
       end
     end
   end
