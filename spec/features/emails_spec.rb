@@ -1,4 +1,4 @@
-require 'rails_helper'
+  require 'rails_helper'
 
 def subscribe(email)
   visit root_path
@@ -24,7 +24,7 @@ RSpec.describe 'Subscriptions', type: :feature do
     expect(page).to have_content('Thank you')
   end
 
-  scenario 'No email subscribed leaves user at root path' do
+  scenario 'Unsubscribe with no email subscribed leaves user at root path' do
     email = 'test@test.com'
     unsubscribe(email)
     expect(page).to have_current_path(root_path)

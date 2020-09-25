@@ -53,7 +53,7 @@ group :development, :test do
   # gem 'sqlite3'
 
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
-      gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master' # Previously '4-0-dev' or '4-0-maintenance' branch
+      gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main' # Previously '4-0-dev' or '4-0-maintenance' branch
   end
 
   gem 'capybara'

@@ -18,5 +18,8 @@
   .form-group
     = f.label :password_confirmation, "Password Confirmation", :class => 'control-label'
     = f.password_field :password_confirmation, :class => 'form-control'
+  .form-group
+    = f.check_box :admin
+    = f.label :admin, "Admin"
   .actions
     = f.submit 'Save', :class => 'btn btn-primary'
