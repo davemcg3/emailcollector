@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :users
   get 'emails/unsubscribe' => 'emails#unsubscribe'
   post 'emails/unsubscribe' => 'emails#unsubscribed'
   resources :emails
- # these routes are for showing users a login form, logging them in, and logging them out.
+  # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

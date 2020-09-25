@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.0.3.3'
 # Use SCSS for stylesheets
-#gem 'sass-rails', '~> 5.0'
+# gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
@@ -14,7 +16,7 @@ gem 'uglifier'
 # Use puma in production
 gem 'puma'
 # Use rack-timeout to kill long-running processes, heroku timeouts in 30s but can't tell puma it happened
-gem "rack-timeout", require: "rack/timeout/base"
+gem 'rack-timeout', require: 'rack/timeout/base'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -38,8 +40,8 @@ gem 'pg'
 # gem 'capistrano-rails', group: :development
 
 # Add bootstrap
-gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'bootstrap-sass'
 
 # Use HAML templating engine
 gem 'haml-rails'
@@ -53,20 +55,23 @@ group :development, :test do
   # gem 'sqlite3'
 
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
-      gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main' # Previously '4-0-dev' or '4-0-maintenance' branch
+    # Previously '4-0-dev' or '4-0-maintenance' branch
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
   end
 
   gem 'capybara'
   gem 'webdrivers'
 
   # Pretty print
-  gem "awesome_print"
+  gem 'awesome_print'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
 
+  # Ruby static code analyzer (a.k.a. linter) and code formatter.
+  gem 'rubocop', require: false
 end
 
 group :production do

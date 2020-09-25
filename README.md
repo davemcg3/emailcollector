@@ -20,5 +20,11 @@ u.save
 
 Now you'll have an admin menu that you can use to navigate around the admin portions of the app, checking the list of all collected emails and the list of all users.
 
+## Check Lint
 
+`rubocop`
+
+auto-fix lint
+
+`rubocop -a`
 

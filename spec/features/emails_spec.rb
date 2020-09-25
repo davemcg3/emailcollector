@@ -1,4 +1,6 @@
-  require 'rails_helper'
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 def subscribe(email)
   visit root_path
@@ -81,7 +83,7 @@ RSpec.describe 'Rails standard methods, anon user', type: :feature do
     email = 'test@test.com'
     subscribe(email)
     subscriber = Email.find_by_email(email)
-    page.driver.submit :patch, "/emails/#{Email.first.id}", {description: 'should fail to execute'}
+    page.driver.submit :patch, "/emails/#{Email.first.id}", { description: 'should fail to execute' }
     subscriber.reload
     expect(subscriber.description).to be nil
   end
@@ -98,7 +100,7 @@ RSpec.describe 'Rails standard methods, admin user', type: :feature do
   before(:each) do
     admin_email = 'admin@test.com'
     admin_password = '1234'
-    User.create name: "Admin", email: admin_email, password: admin_password, admin: true
+    User.create name: 'Admin', email: admin_email, password: admin_password, admin: true
     visit login_path
     fill_in 'email', with: admin_email
     fill_in 'password', with: admin_password
@@ -110,7 +112,7 @@ RSpec.describe 'Rails standard methods, admin user', type: :feature do
     subscribe(email)
     visit emails_path
     expect(page).to have_current_path(emails_path)
-    within("table") do
+    within('table') do
       expect(page).to have_text(email)
     end
   end
@@ -134,7 +136,7 @@ RSpec.describe 'Rails standard methods, admin user', type: :feature do
     subscribe(email)
     subscriber = Email.find_by_email(email)
     new_description = 'should update for admin'
-    page.driver.submit :patch, "/emails/#{Email.first.id}", {email: { description: new_description} }
+    page.driver.submit :patch, "/emails/#{Email.first.id}", { email: { description: new_description } }
     subscriber.reload
     expect(subscriber.description).to eq(new_description)
   end
@@ -142,12 +144,12 @@ RSpec.describe 'Rails standard methods, admin user', type: :feature do
   scenario 'can delete' do
     email = 'test@test.com'
     subscribe(email)
-    expect {
+    expect do
       page.driver.submit :delete, "/emails/#{Email.first.id}", {}
-    }.to change { Email.count }.by(-1)
+    end.to change { Email.count }.by(-1)
     expect(page).to have_current_path(emails_path)
-    within("#flash-display") do
-      expect(page).to have_text("Email was successfully destroyed", minimum: 1)
+    within('#flash-display') do
+      expect(page).to have_text('Email was successfully destroyed', minimum: 1)
     end
   end
 end

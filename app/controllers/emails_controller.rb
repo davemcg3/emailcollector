@@ -1,9 +1,12 @@
-class EmailsController < ApplicationController
-  before_action :authorize, only: [:index, :edit, :update, :destroy]
-  before_action :is_admin, only: [:index, :edit, :update, :destroy]
-  before_action :set_email, only: [:show, :edit, :update, :destroy]
+# frozen_string_literal: true
 
-  layout "applicationflex", :only => [:new, :create, :show, :unsubscribe]
+# Handles RESTful actions related to collected email addresses
+class EmailsController < ApplicationController
+  before_action :authorize, only: %i[index edit update destroy]
+  before_action :admin?, only: %i[index edit update destroy]
+  before_action :set_email, only: %i[show edit update destroy]
+
+  layout 'applicationflex', only: %i[new create show unsubscribe]
 
   # GET /emails
   # GET /emails.json
@@ -23,17 +26,15 @@ class EmailsController < ApplicationController
   end
 
   # GET /emails/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /emails
   # POST /emails.json
   def create
-    #explicitly set
+    # explicitly set
     params[:email][:status] = 1
     params[:email][:unsubscribed] = nil
     params[:email][:source] = request.host
-    @debug = email_params
 
     @email = Email.new(email_params)
     respond_to do |format|
@@ -82,8 +83,7 @@ class EmailsController < ApplicationController
     end
   end
 
-  def unsubscribe
-  end
+  def unsubscribe; end
 
   def unsubscribed
     @email = Email.find_by email: email_params[:email]
@@ -91,7 +91,7 @@ class EmailsController < ApplicationController
     Rails.logger.debug @email.present?
     if @email.present?
       @email[:status] = 0
-      @email[:unsubscribed] =  DateTime.current
+      @email[:unsubscribed] = DateTime.current
     end
     respond_to do |format|
       if @email.present? && @email.update(email_params)
@@ -106,21 +106,21 @@ class EmailsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_email
-      @email = Email.find(params[:id])
-    end
 
-    def set_email_by_email
-      @email = Email.find_by email:email_params[:email]
-      #@debug = @found
-      #@email.update_column(:id,@found[:id])
-      #@debug = @email
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_email
+    @email = Email.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def email_params
-      params.require(:email).permit(:email, :status, :source, :description, :unsubscribed)
-    end
+  def set_email_by_email
+    @email = Email.find_by email: email_params[:email]
+    # @debug = @found
+    # @email.update_column(:id,@found[:id])
+    # @debug = @email
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def email_params
+    params.require(:email).permit(:email, :status, :source, :description, :unsubscribed)
+  end
 end

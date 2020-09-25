@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Anon user actions', type: :feature do
@@ -18,7 +20,7 @@ RSpec.describe 'Anon user actions', type: :feature do
   scenario 'cannot visit the page to update user' do
     anon_email = 'anon-created@test.com'
     anon_password = '1234'
-    anon_user = User.create name: "Anon", email: anon_email, password: anon_password
+    anon_user = User.create name: 'Anon', email: anon_email, password: anon_password
     visit edit_user_path(id: anon_user.id)
     expect(page).to have_current_path(root_path)
   end
@@ -26,8 +28,8 @@ RSpec.describe 'Anon user actions', type: :feature do
   scenario 'cannot update self or grant admin to self' do
     anon_email = 'anon-created@test.com'
     anon_password = '1234'
-    anon_user = User.create name: "Anon", email: anon_email, password: anon_password
-    page.driver.submit :patch, "/users/#{anon_user.id}", {name: 'should fail to execute', admin: true}
+    anon_user = User.create name: 'Anon', email: anon_email, password: anon_password
+    page.driver.submit :patch, "/users/#{anon_user.id}", { name: 'should fail to execute', admin: true }
     anon_user.reload
     expect(anon_user.name).to eq(anon_user.name)
     expect(anon_user.admin).to be false
@@ -36,9 +38,9 @@ RSpec.describe 'Anon user actions', type: :feature do
   scenario 'cannot update other user or grant admin' do
     anon_email = 'anon-created@test.com'
     anon_password = '1234'
-    anon_name = "Anon"
+    anon_name = 'Anon'
     anon_user = User.create name: anon_name, email: anon_email, password: anon_password
-    page.driver.submit :patch, "/users/#{anon_user.id}", {name: 'should fail to execute'}
+    page.driver.submit :patch, "/users/#{anon_user.id}", { name: 'should fail to execute' }
     anon_user.reload
     expect(anon_user.name).to eq(anon_name)
   end
@@ -48,10 +50,10 @@ RSpec.describe 'Anon user actions', type: :feature do
     standard_name = 'Standard'
     standard_password = '1234'
     standard_user = User.create name: standard_name, email: standard_email, password: standard_password
-    expect {
+    expect do
       page.driver.submit :delete, "/users/#{standard_user.id}", {}
-    }.not_to change { User.count }
-    expect( User.find(standard_user.id).name ).to eq(standard_name)
+    end.not_to change { User.count }
+    expect(User.find(standard_user.id).name).to eq(standard_name)
   end
 
   scenario 'cannot view all users' do
@@ -77,7 +79,7 @@ RSpec.describe 'Standard user actions', type: :feature do
   before(:each) do
     standard_email = 'standard@test.com'
     standard_password = '1234'
-    @standard = User.create name: "Standard", email: standard_email, password: standard_password, admin: false
+    @standard = User.create name: 'Standard', email: standard_email, password: standard_password, admin: false
     visit login_path
     fill_in 'email', with: standard_email
     fill_in 'password', with: standard_password
@@ -106,13 +108,13 @@ RSpec.describe 'Standard user actions', type: :feature do
   scenario 'cannot visit the page to update user' do
     standard_email = 'standard-created@test.com'
     standard_password = '1234'
-    standard_user = User.create name: "Standard", email: standard_email, password: standard_password
+    standard_user = User.create name: 'Standard', email: standard_email, password: standard_password
     visit edit_user_path(id: standard_user.id)
     expect(page).to have_current_path(root_path)
   end
 
   scenario 'cannot update self or grant admin' do
-    page.driver.submit :patch, "/users/#{@standard.id}", {name: 'should fail to execute', admin: true}
+    page.driver.submit :patch, "/users/#{@standard.id}", { name: 'should fail to execute', admin: true }
     @standard.reload
     expect(@standard.name).to eq(@standard.name)
     expect(@standard.admin).to be false
@@ -123,7 +125,7 @@ RSpec.describe 'Standard user actions', type: :feature do
     standard_name = 'Standard'
     standard_password = '1234'
     standard_user = User.create name: standard_name, email: standard_email, password: standard_password
-    page.driver.submit :patch, "/users/#{standard_user.id}", {name: 'should fail to execute'}
+    page.driver.submit :patch, "/users/#{standard_user.id}", { name: 'should fail to execute' }
     standard_user.reload
     expect(standard_user.name).to eq(standard_name)
   end
@@ -133,10 +135,10 @@ RSpec.describe 'Standard user actions', type: :feature do
     standard_name = 'Standard'
     standard_password = '1234'
     standard_user = User.create name: standard_name, email: standard_email, password: standard_password
-    expect {
+    expect do
       page.driver.submit :delete, "/users/#{standard_user.id}", {}
-    }.not_to change { User.count }
-    expect( User.find(standard_user.id).name ).to eq(standard_name)
+    end.not_to change { User.count }
+    expect(User.find(standard_user.id).name).to eq(standard_name)
   end
 
   scenario 'cannot view all users' do
@@ -158,7 +160,7 @@ RSpec.describe 'Admin user actions', type: :feature do
   before(:each) do
     admin_email = 'admin@test.com'
     admin_password = '1234'
-    @admin = User.create name: "Admin", email: admin_email, password: admin_password, admin: true
+    @admin = User.create name: 'Admin', email: admin_email, password: admin_password, admin: true
     visit login_path
     fill_in 'email', with: admin_email
     fill_in 'password', with: admin_password
@@ -195,7 +197,7 @@ RSpec.describe 'Admin user actions', type: :feature do
   scenario 'can update user' do
     standard_email = 'standard@test.com'
     standard_password = '1234'
-    standard_user = User.create name: "Standard", email: standard_email, password: standard_password
+    standard_user = User.create name: 'Standard', email: standard_email, password: standard_password
     visit edit_user_path(id: standard_user.id)
     edited_name = 'admin-edited'
     fill_in 'user_name', with: edited_name
@@ -211,7 +213,7 @@ RSpec.describe 'Admin user actions', type: :feature do
   scenario 'can promote user to admin' do
     standard_email = 'standard@test.com'
     standard_password = '1234'
-    standard_user = User.create name: "Standard", email: standard_email, password: standard_password
+    standard_user = User.create name: 'Standard', email: standard_email, password: standard_password
     visit edit_user_path(id: standard_user.id)
     check 'user_admin'
     click_on 'Save'
@@ -228,12 +230,12 @@ RSpec.describe 'Admin user actions', type: :feature do
     within('table') do
       expect(page).to have_text(standard_user.name)
     end
-    expect {
+    expect do
       within('body') do
         # find(:xpath, "//a[@href='/users/#{standard_user.id}']").click
-        find_link('Destroy', {href: "/users/#{standard_user.id}"}).click
+        find_link('Destroy', { href: "/users/#{standard_user.id}" }).click
       end
-    }.to change { User.count }.by(-1)
+    end.to change { User.count }.by(-1)
     expect { User.find(standard_user.id) }.to raise_exception(ActiveRecord::RecordNotFound)
   end
 
@@ -251,4 +253,3 @@ RSpec.describe 'Admin user actions', type: :feature do
     end
   end
 end
-

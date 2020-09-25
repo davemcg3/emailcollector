@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AddMultiColumnIndexToEmails < ActiveRecord::Migration
   def change
-    remove_index :emails, :name => "index_emails_on_email"
-    add_index :emails, [:email, :source], unique: true
+    remove_index :emails, name: 'index_emails_on_email'
+    add_index :emails, %i[email source], unique: true
   end
 end

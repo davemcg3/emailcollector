@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # config/initializers/rack_timeout.rb
 
 # insert middleware wherever you want in the stack, optionally pass
