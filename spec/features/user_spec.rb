@@ -52,7 +52,7 @@ RSpec.describe 'Anon user actions', type: :feature do
     standard_user = User.create name: standard_name, email: standard_email, password: standard_password
     expect do
       page.driver.submit :delete, "/users/#{standard_user.id}", {}
-    end.not_to change { User.count }
+    end.not_to(change { User.count })
     expect(User.find(standard_user.id).name).to eq(standard_name)
   end
 
@@ -137,7 +137,7 @@ RSpec.describe 'Standard user actions', type: :feature do
     standard_user = User.create name: standard_name, email: standard_email, password: standard_password
     expect do
       page.driver.submit :delete, "/users/#{standard_user.id}", {}
-    end.not_to change { User.count }
+    end.not_to(change { User.count })
     expect(User.find(standard_user.id).name).to eq(standard_name)
   end
 

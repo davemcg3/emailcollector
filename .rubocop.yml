@@ -1,0 +1,5 @@
+AllCops:
+  Exclude:
+    - 'config/unicorn.rb'
+    - 'db/migrate/**'
+  NewCops: enable
