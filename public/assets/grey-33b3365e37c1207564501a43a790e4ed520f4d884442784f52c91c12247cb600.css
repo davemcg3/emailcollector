@@ -1,0 +1,14 @@
+.grey {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: lightgrey; }
+  .grey .flexbox-item {
+    background-color: dimgrey;
+    padding: 2em;
+    border: 2px white solid; }
+  .grey .navbar {
+    background-color: rgba(155, 28, 44, 0);
+    border-bottom: none;
+    color: dimgray; }
+    .grey .navbar ul.nav > li > a, .grey .navbar ul.nav > li.navbar-text {
+      color: dimgray; }
