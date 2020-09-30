@@ -1,0 +1,21 @@
+.patriotic_american {
+  background-image: url(/assets/Flag_of_the_United_States-64dfb691333e7421e10325c7d4d4e73bb15469bbe8bdc95e1874b3785daffb6a.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #002147; }
+  .patriotic_american .flexbox-item {
+    background-color: #002147;
+    padding: 2em;
+    border: 2px white solid; }
+  .patriotic_american .flag_red {
+    background-color: #9B1C2C;
+    color: #fff; }
+  .patriotic_american .flag_blue {
+    background-color: #002147;
+    color: #fff; }
+  .patriotic_american .navbar {
+    background-color: rgba(155, 28, 44, 0);
+    border-bottom: none;
+    color: #fff; }
+    .patriotic_american .navbar ul.nav > li > a, .patriotic_american .navbar ul.nav > li.navbar-text {
+      color: #fff; }
