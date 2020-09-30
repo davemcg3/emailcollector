@@ -62,6 +62,7 @@ task :deploy do
         command %{mkdir -p tmp/}
         command %{touch tmp/restart.txt}
       end
+      # invoke :'puma:restart'
     end
   end
 
@@ -72,24 +73,6 @@ end
 # For help in making your deploy script, see the Mina documentation:
 #
 #  - https://github.com/mina-deploy/mina/tree/master/docs
-
-desc "Deploys the current version to the server."
-task :deploy => :remote_environment do
-  deploy do
-    # Put things that will set up an empty directory into a fully set-up
-    # instance of your project.
-    invoke :'git:clone'
-    invoke :'deploy:link_shared_paths'
-    invoke :'bundle:install'
-    invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
-    invoke :'deploy:cleanup'
-
-    on :launch do
-      invoke :'puma:restart'
-    end
-  end
-end
 
 # namespace :puma do
 #   desc "Start the application"
