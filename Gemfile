@@ -48,6 +48,9 @@ gem 'mini_racer'
 
 gem 'dotenv-rails'
 
+# For managing deployment
+gem 'mina'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
