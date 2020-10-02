@@ -1,5 +1,4 @@
-# Change these
-server 'server', port: 7171, roles: [:web, :app, :db], primary: true
+server 'emailcollector', port: 30001, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:davemcg3/emailcollector.git'
 set :application,     'emailcollector'
