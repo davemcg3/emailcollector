@@ -8,7 +8,7 @@ rackup      DefaultRackup
 port        ENV['PORT']     || 3000
 
 app_dir = File.expand_path("../..", __FILE__)
-shared_dir = "#{app_dir}/shared"
+shared_dir = "#{app_dir}/current/shared"
 
 # Default to production
 rails_env = ENV['RAILS_ENV'] || "production"
