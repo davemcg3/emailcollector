@@ -1,5 +1,4 @@
 # server 'ctsv', port: 30001, roles: [:web, :app, :db], primary: true
-server "172.251.188.199", user: "dave", roles: %w{app db web}
 
 set :repo_url,        'git@github.com:davemcg3/emailcollector.git'
 set :application,     'emailcollector'
