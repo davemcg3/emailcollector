@@ -8,6 +8,7 @@ rackup      DefaultRackup
 port        ENV['PORT']     || 3000
 
 app_dir = File.expand_path("../..", __FILE__)
+puts "app_dir #{app_dir}"
 shared_dir = "#{app_dir}/current/shared"
 
 # Default to production
