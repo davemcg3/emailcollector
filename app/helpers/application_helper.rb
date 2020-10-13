@@ -2,6 +2,8 @@ module ApplicationHelper
   # TODO: Refactor to use the database to store site to css file mapping so the app is site agnostic
   def site_class
     case request.domain(n=2)
+    when 'hugthecenterline.com'
+      "patriotic_american"
     when 'patriotplatform.com'
       "patriotic_american"
     when 'greymanhw.com'
@@ -13,6 +15,8 @@ module ApplicationHelper
 
   def btn_color
     case request.domain(n=2)
+    when 'hugthecenterline.com'
+      'flag_red'
     when 'patriotplatform.com'
       'flag_red'
     when 'greymanhw.com'

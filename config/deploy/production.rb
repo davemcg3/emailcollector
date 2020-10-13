@@ -8,7 +8,13 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 server "172.251.188.199", user: "dave", roles: %w{app db web}
 
+set :stage, :production # this defines production stage for deployment
 
+set :branch, 'main'
+
+# role :app, %w(dave@ctsv)
+# role :web, %w(dave@ctsv)
+# role :db,  %w(dave@ctsv)
 
 # role-based syntax
 # ==================
@@ -21,9 +27,6 @@ server "172.251.188.199", user: "dave", roles: %w{app db web}
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
-# role :app, %w{dave@ctsv}
-# role :web, %w{dave@ctsv}
-# role :db,  %w{dave@ctsv}
 
 
 
@@ -46,11 +49,14 @@ server "172.251.188.199", user: "dave", roles: %w{app db web}
 # Global options
 # --------------
 #  set :ssh_options, {
-#    keys: %w(/home/user_name/.ssh/id_rsa-github-davemcg3),
+#    keys: %w(/home/user_name/.ssh/id_rsa),
 #    forward_agent: false,
 #    auth_methods: %w(password)
 #  }
 #
+set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa-github-davemcg3.pub) }
+
+
 # The server-based syntax can be used to override options:
 # ------------------------------------
 # server "example.com",
