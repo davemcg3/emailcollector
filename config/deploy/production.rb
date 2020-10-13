@@ -54,7 +54,7 @@ set :branch, 'main'
 #    auth_methods: %w(password)
 #  }
 #
-set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa-github-davemcg3.pub) }
+set :ssh_options,     { forward_agent: true, user: "dave", keys: %w(~/.ssh/id_rsa-github-davemcg3.pub) }
 
 
 # The server-based syntax can be used to override options:
