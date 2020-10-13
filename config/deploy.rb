@@ -17,7 +17,7 @@ set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 
 # when using db, you should add config/database.yml here
-set :linked_files, fetch(:linked_files, []).concat(%w{.rbenv-vars ../current/config/database.yml})
+set :linked_files, fetch(:linked_files, []).concat(%w{.rbenv-vars config/database.yml})
 
 set :linked_dirs, fetch(:linked_dirs, []).concat(%w{log tmp/pids tmp/cache tmp/sockets vendor/bundle})
 
