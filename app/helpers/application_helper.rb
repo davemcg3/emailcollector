@@ -1,8 +1,7 @@
 module ApplicationHelper
   # TODO: Refactor to use the database to store site to css file mapping so the app is site agnostic
   def site_class
-    Rails.logger.debug "domain: #{request.domain(n=1)}"
-    case request.domain(n=2)
+    case request.domain(n=1)
     when 'hugthecenterline.com'
       "patriotic_american"
     when 'patriotplatform.com'
@@ -15,7 +14,7 @@ module ApplicationHelper
   end
 
   def btn_color
-    case request.domain(n=2)
+    case request.domain(n=1)
     when 'hugthecenterline.com'
       'flag_red'
     when 'patriotplatform.com'
