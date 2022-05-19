@@ -230,8 +230,7 @@ RSpec.describe 'Admin user actions', type: :feature do
     end
     expect {
       within('body') do
-        # find(:xpath, "//a[@href='/users/#{standard_user.id}']").click
-        find_link('Destroy', {href: "/users/#{standard_user.id}"}).click
+        click_link('Destroy', href: "/users/#{standard_user.id}") # wrong number of arguments given, expected 0..1
       end
     }.to change { User.count }.by(-1)
     expect { User.find(standard_user.id) }.to raise_exception(ActiveRecord::RecordNotFound)
