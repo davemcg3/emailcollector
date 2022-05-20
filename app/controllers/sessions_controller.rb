@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    Rails.logger.info(request.env)
     Rails.logger.debug params[:email]
     user = User.find_by_email(params[:email])
     Rails.logger.debug user
