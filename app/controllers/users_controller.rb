@@ -26,7 +26,8 @@
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    checked_user_params = @current_user.present? && @current_user.admin? ? user_params : user_params.merge(admin: false)
+    @user = User.new(checked_user_params)
 
     respond_to do |format|
       if @user.save

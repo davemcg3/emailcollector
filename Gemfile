@@ -54,6 +54,9 @@ gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
 
+# Pretty print, used in /app/views/layouts/applicationflex.html.haml:22
+gem "awesome_print"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -66,9 +69,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'webdrivers'
-
-  # Pretty print
-  gem "awesome_print"
 end
 
 group :development do
