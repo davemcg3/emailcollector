@@ -15,6 +15,18 @@ RSpec.describe 'Anon user actions', type: :feature do
     expect(User.last.admin).to be false
   end
 
+  scenario 'cannot register an admin user' do
+    visit new_user_path
+    name = 'Anon-created'
+    fill_in 'user_name', with: name
+    fill_in 'user_email', with: 'admin-created@test.com'
+    fill_in 'user_password', with: '1234'
+    fill_in 'user_password_confirmation', with: '1234'
+    check 'user_admin'
+    click_on 'Save'
+    expect(User.last.admin).to be false
+  end
+
   scenario 'cannot visit the page to update user' do
     anon_email = 'anon-created@test.com'
     anon_password = '1234'
@@ -70,6 +82,14 @@ RSpec.describe 'Anon user actions', type: :feature do
     within('body') do
       expect(page).to have_current_path(root_path)
     end
+  end
+
+  scenario 'cannot login with non-existent user' do
+    visit login_path
+    fill_in 'email', with: 'notregistered@test.com'
+    fill_in 'password', with: '1234'
+    click_on 'Submit'
+    expect(page).to have_text('Unable to login')
   end
 end
 
